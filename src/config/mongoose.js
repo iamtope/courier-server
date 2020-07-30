@@ -1,7 +1,7 @@
 const config = require("./index");
 const mongoose = require("mongoose");
 
-module.exports = function (app) {
+module.exports = app => {
     mongoose.connect(config.mongoUrl, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
