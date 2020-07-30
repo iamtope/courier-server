@@ -41,6 +41,7 @@ exports.createShipment = async (req, res) => {
             discountPercentage = discountPercentage,
             currentPrice = globUtil.calculatePercentage(originalPrice, discountPercentage)
         }
+
         let origin = {
             senderName: req.body.senderName,
             senderCompanyName: req.body.senderCompanyName,
@@ -52,7 +53,36 @@ exports.createShipment = async (req, res) => {
             senderPhone: req.body.senderPhone
         }
 
-    } catch (err) {
+        let destination = {
+            recieverName: req.body.recieverName,
+            recieverCompanyName: req.body.recieverCompanyName,
+            recieverAddress: req.body.recieverAddress,
+            recieverPostalCode: req.body.recieverPostalCode,
+            recieverCity: req.body.recieverCity,
+            recieverCountry: req.body.recieverCountry,
+            recieverEmail: req.body.recieverEmail,
+            recieverPhone: req.body.recieverPhone
+        }
+        let shipment = {
+            origin: origin,
+            destination: destination,
+            status: 'WAITING',
+            cost: cost,
+        }
 
+        let shipment = new Shipment(shipment);
+
+        let response = await shipment.save();
+        res.status(200).json({
+            status: "Success",
+            data: response
+        });
+
+    } catch (err) {
+        res.status(500).json({
+            status: "Success",
+            error: err
+        });
+        console.log(err)
     }
 }

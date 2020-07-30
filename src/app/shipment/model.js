@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
-const addressSchema = require('../helpermodels/address');
+const originAddress = require('../helpermodels/originAddress');
+const destinationAddress = require('../helpermodels/destinationAddress');
 const costSchema = require('../helpermodels/cost');
 const parcelSchema = require('../helpermodels/parcel')
 const Schema = mongoose.Schema;
 
 export const shipmentSchema = new Schema({
-    origin: addressSchema,
-    destination: addressSchema,
+    origin: originAddress,
+    destination: destinationAddress,
     driver: {
         type: Schema.Types.ObjectId,
         ref: 'Driver'
