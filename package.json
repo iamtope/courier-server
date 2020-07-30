@@ -1,7 +1,7 @@
 {
-  "name": "jungle-backend",
+  "name": "courier-app",
   "version": "1.0.0",
-  "description": "Jungle backend",
+  "description": "Fiverr Client app",
   "main": "src/index.js",
   "bin": {
     "jungle-backend/create-project": "bin/create-project",
