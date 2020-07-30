@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
-import addressSchema from '../helpermodels/address';
-import costSchema from '../helpermodels/cost';
+const addressSchema = require('../helpermodels/address');
+const costSchema = require('../helpermodels/cost');
+const parcelSchema = require('../helpermodels/parcel')
 const Schema = mongoose.Schema;
 
 export const shipmentSchema = new Schema({
@@ -11,7 +12,14 @@ export const shipmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Driver'
     },
-    status: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    items: parcelSchema,
+    status: {
+        enum: ['created', 'under_review', 'asigned', 'departed', 'arrived', 'ready_for_pickup', 'delivered']
+    },
     assignedTimestamp: Date,
     pickedUpTimestamp: Date,
     deliveredTimestamp: Date,
