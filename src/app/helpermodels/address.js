@@ -11,4 +11,6 @@ export default addressSchema = new mongoose.Schema({
     country: String,
     email: String,
     phone: String
+}, {
+    timestamps: true
 });

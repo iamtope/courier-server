@@ -43,6 +43,7 @@
     "jsonwebtoken": "^8.5.1",
     "minisearch": "^2.2.1",
     "mongoose": "^5.9.5",
+    "mongoose-currency": "^0.2.0",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
     "multer-storage-cloudinary": "^2.2.1",
