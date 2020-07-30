@@ -6,21 +6,13 @@ let costSchema;
 
 export default costSchema = new mongoose.Schema({
     originalPrice: {
-        type: Currency,
-        min: 100
+        type: String,
     },
     discountPercentage: {
         type: Number,
-        min: 0,
-        max: 100
-    },
-    discountAmount: {
-        type: Currency,
-        min: 0
     },
     currentPrice: {
-        type: Currency,
-        min: 0
+        type: Number,
     },
 }, {
     timestamps: true
