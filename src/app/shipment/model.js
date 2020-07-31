@@ -6,6 +6,7 @@ const costSchema = require('../helpermodels/cost');
 const parcelSchema = require('../helpermodels/parcel')
 const Schema = mongoose.Schema;
 
+const status = ['created', 'under_review', 'asigned', 'departed', 'arrived', 'ready_for_pickup', 'delivered'];
 export const shipmentSchema = new Schema({
     origin: originAddress,
     destination: destinationAddress,
@@ -19,7 +20,10 @@ export const shipmentSchema = new Schema({
     },
     items: parcelSchema,
     status: {
-        enum: ['created', 'under_review', 'asigned', 'departed', 'arrived', 'ready_for_pickup', 'delivered']
+        type: String,
+
+        default: "created",
+        enum: status
     },
     assignedTimestamp: Date,
     pickedUpTimestamp: Date,

@@ -21,13 +21,6 @@ exports.createNewUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             phone_number: req.body.phone_number,
-            username: req.body.username,
-            isAdminCreated: req.body.isAdminCreated,
-            location: {
-                street: req.body.street,
-                city: req.body.city,
-                state: req.body.state
-            }
         });
         user.password = await user.hashPassword(req.body.password);
         let generatedToken = await token.genToken(req.body.email);

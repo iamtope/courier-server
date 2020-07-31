@@ -31,16 +31,15 @@ exports.getShipmentById = async (req, res) => {
 
 exports.createShipment = async (req, res) => {
     try {
-        let {
-            originalPrice,
-            discountPercentage
-        } = req.body;
-
-        let cost = {
-            originalPrice = originalPrice,
-            discountPercentage = discountPercentage,
-            currentPrice = globUtil.calculatePercentage(originalPrice, discountPercentage)
-        }
+        // let {
+        //     originalPrice,
+        //     discountPercentage
+        // } = req.body;
+        // let cost = {
+        //     originalPrice: originalPrice,
+        //     discountPercentage: discountPercentage,
+        //     currentPrice: await globUtil.calculatePercentage(originalPrice, discountPercentage)
+        // }
 
         let origin = {
             senderName: req.body.senderName,
@@ -52,7 +51,12 @@ exports.createShipment = async (req, res) => {
             senderEmail: req.body.senderEmail,
             senderPhone: req.body.senderPhone
         }
-
+        let parcel = {
+            parcelname: req.body.parcelname,
+            weight: req.body.weight,
+            length: req.body.length,
+            height: req.body.height
+        }
         let destination = {
             recieverName: req.body.recieverName,
             recieverCompanyName: req.body.recieverCompanyName,
@@ -63,20 +67,41 @@ exports.createShipment = async (req, res) => {
             recieverEmail: req.body.recieverEmail,
             recieverPhone: req.body.recieverPhone
         }
-        let shipment = {
+        let payload = {
             origin: origin,
             destination: destination,
-            status: 'WAITING',
-            cost: cost,
+            // cost: cost,
+            parcel: parcel
         }
 
-        let shipment = new Shipment(shipment);
+        // console.log(payload)
+        // let shipment = new Shipment({
+        //     origin: origin,
+        //     destination: destination,
+        //     cost: cost,
+        //     parcel: parcel
+        // });
+        console.log(payload)
 
-        let response = await shipment.save();
-        res.status(200).json({
-            status: "Success",
-            data: response
+        await Shipment.create(payload, (err, data) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    message: 'Internal server error; could not create shipment'
+                });
+            } else {
+                res.status(200).json({
+                    message: 'New shipment created!',
+                    data: data
+                });
+            }
         });
+        // console.log(shipment)
+        // let response = await shipment.save();
+        // res.status(200).json({
+        //     status: "Success",
+        //     data: shipment
+        // });
 
     } catch (err) {
         res.status(500).json({
