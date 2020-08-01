@@ -75,16 +75,32 @@ exports.createShipment = async (req, res) => {
             items: items,
             user: req.body.user,
         }
-
-
-        console.log(payload)
-
         let shipment = await shipmentRepository.createShipments({
             ...payload
         });
         res.status(200).json({
             status: "Success",
             data: shipment
+        });
+
+    } catch (err) {
+        res.status(500).json({
+            status: "Success",
+            error: err
+        });
+        console.log(err)
+    }
+}
+
+exports.updateShipment = async (req, res) => {
+    try {
+        let id = req.params.id
+        let response = await shipmentRepository.updateShipment(id, {
+            $set: req.body
+        });
+        res.status(200).json({
+            status: "Success",
+            data: response
         });
 
     } catch (err) {

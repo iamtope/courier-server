@@ -1,7 +1,5 @@
 const Shipment = require("./model");
 
-
-
 exports.shipments = async () => {
     const shipments = await Shipment.find({});
     return shipments;
@@ -16,3 +14,14 @@ exports.createShipments = async payload => {
     const newShipment = await Shipment.create(payload);
     return newShipment
 }
+
+exports.updateShipment = async (id, body) => {
+    const shipment = await Shipment.findByIdAndUpdate(id, body, {
+        useFindAndModify: false,
+        new: true,
+    });
+    if (!shipment) {
+        throw new Error('Shipment not updated');
+    }
+    return shipment
+};
