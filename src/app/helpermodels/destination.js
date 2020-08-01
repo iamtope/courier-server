@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-
-let recieverAddressSchema;
-
-export default recieverAddressSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+exports.destination = new Schema({
     recieverName: String,
     recieverCompanyName: String,
     recieverAddress: String,

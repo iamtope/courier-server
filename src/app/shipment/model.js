@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-const originAddress = require('../helpermodels/originAddress');
-const destinationAddress = require('../helpermodels/destinationAddress');
-const costSchema = require('../helpermodels/cost');
-const parcelSchema = require('../helpermodels/parcel')
+const origin = require('../helpermodels/origin');
+const destination = require('../helpermodels/destination');
+const cost = require('../helpermodels/cost');
+const parcel = require('../helpermodels/parcel')
 const Schema = mongoose.Schema;
 
 const status = ['created', 'under_review', 'asigned', 'departed', 'arrived', 'ready_for_pickup', 'delivered'];
 export const shipmentSchema = new Schema({
-    origin: originAddress,
-    destination: destinationAddress,
+    origin: origin.origin,
+    destination: destination.destination,
     driver: {
         type: Schema.Types.ObjectId,
         ref: 'Driver'
@@ -18,17 +18,17 @@ export const shipmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    items: parcelSchema,
+    items: parcel.parcel,
     status: {
         type: String,
 
         default: "created",
         enum: status
     },
-    assignedTimestamp: Date,
-    pickedUpTimestamp: Date,
-    deliveredTimestamp: Date,
-    cost: costSchema,
+    // assignedTimestamp: Date,
+    // pickedUpTimestamp: Date,
+    // deliveredTimestamp: Date,
+    cost: cost.cost,
 
 }, {
     timestamps: true

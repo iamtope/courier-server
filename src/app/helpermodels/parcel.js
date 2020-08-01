@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-let parcelSchema;
-
-export default parcelSchema = new mongoose.Schema({
-    item: {
+exports.parcel = new Schema({
+    items: [{
         parcelname: String,
         weight: String,
         length: String,
         height: String
-    },
+    }],
 
 }, {
     timestamps: true

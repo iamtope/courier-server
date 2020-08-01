@@ -8,7 +8,7 @@ module.exports = app => {
         useFindAndModify: false
     }).then(res => console.log("conneceted")).catch(err => console.log(err))
     mongoose.Promise = global.Promise;
-
+    mongoose.set('useCreateIndex', true)
     process.on("SIGINT", cleanup);
     process.on("SIGTERM", cleanup);
     process.on("SIGHUP", cleanup);
