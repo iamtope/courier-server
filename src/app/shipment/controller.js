@@ -50,12 +50,12 @@ exports.createShipment = async (req, res) => {
             senderEmail: req.body.senderEmail,
             senderPhone: req.body.senderPhone
         }
-        let item = [{
+        let items = {
             parcelname: req.body.parcelname,
             weight: req.body.weight,
             length: req.body.length,
             height: req.body.height
-        }]
+        }
 
         let destination = {
             recieverName: req.body.recieverName,
@@ -67,23 +67,20 @@ exports.createShipment = async (req, res) => {
             recieverEmail: req.body.recieverEmail,
             recieverPhone: req.body.recieverPhone
         }
-        let items = items.push
 
         let payload = {
             origin: origin,
             destination: destination,
             cost: cost,
+            items: items,
             user: req.body.user,
         }
 
 
-        console.log(items)
+        console.log(payload)
 
         let shipment = await shipmentRepository.createShipments({
-            ...payload,
-            $push: {
-                items: item
-            }
+            ...payload
         });
         res.status(200).json({
             status: "Success",

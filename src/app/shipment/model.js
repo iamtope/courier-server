@@ -18,7 +18,7 @@ export const shipmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    items: parcel.parcel,
+    items: [parcel.parcel],
     status: {
         type: String,
 
