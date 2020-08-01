@@ -1,9 +1,8 @@
-const Shipment = require("./model");
 const globUtil = require('../../utilities/index')
-
+const shipmentRepository = require('./repository')
 exports.getAllShipments = async (req, res) => {
     try {
-        const response = await Shipment.find({});
+        let response = await shipmentRepository.shipments()
         res.status(200).json({
             status: "Success",
             data: response
@@ -18,7 +17,7 @@ exports.getAllShipments = async (req, res) => {
 exports.getShipmentById = async (req, res) => {
     try {
         let id = req.params.id
-        const response = await Shipment.findById(id);
+        let response = await shipmentRepository.shipmentsById(id)
         res.status(200).json({
             status: "Success",
             data: response
@@ -31,15 +30,15 @@ exports.getShipmentById = async (req, res) => {
 
 exports.createShipment = async (req, res) => {
     try {
-        // let {
-        //     originalPrice,
-        //     discountPercentage
-        // } = req.body;
-        // let cost = {
-        //     originalPrice: originalPrice,
-        //     discountPercentage: discountPercentage,
-        //     currentPrice: await globUtil.calculatePercentage(originalPrice, discountPercentage)
-        // }
+        let {
+            originalPrice,
+            discountPercentage
+        } = req.body;
+        let cost = {
+            originalPrice: originalPrice,
+            discountPercentage: discountPercentage,
+            currentPrice: await globUtil.calculatePercentage(originalPrice, discountPercentage)
+        }
 
         let origin = {
             senderName: req.body.senderName,
