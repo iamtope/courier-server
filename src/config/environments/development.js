@@ -1,8 +1,8 @@
 module.exports = {
-    host: "127.0.0.1",
+    host: "mongodb+srv://courier-service:1Adabass@cluster0-y0j45.mongodb.net/<dbname>?retryWrites=true&w=majority",
     mapkey: "AIzaSyDMKSUYaVP2C1pwlklUllVmo8nOoC9zMuU",
     port: 4000, // change with development port
-    mongoUrl: "mongodb://localhost:27017/courier", // replace "projectDbName" with a proper db name
+    mongoUrl: "mongodb+srv://courier-service:1Adabass@cluster0-y0j45.mongodb.net/<dbname>?retryWrites=true&w=majority", // replace "projectDbName" with a proper db name
     logLevel: "debug", // can be chenged to error, warning, info, verbose or silly
     secret: "superSuperSecret",
     host_mailer: "ekpotwisdom@gmail.com",

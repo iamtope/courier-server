@@ -25,3 +25,15 @@ exports.updateShipment = async (id, body) => {
     }
     return shipment
 };
+
+exports.modifyShipment = async (id, body) => {
+    const shipment = await Shipment.findByIdAndUpdate(id, body, {
+        if(err){
+            throw err
+        }
+    })
+    if (!shipment) {
+        throw new Error('Shipment not updated');
+    }
+    return shipment
+}

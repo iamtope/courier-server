@@ -7,7 +7,7 @@ const parcel = require('../helpermodels/parcel')
 const Schema = mongoose.Schema;
 
 const status = ['created', 'under_review', 'asigned', 'departed', 'arrived', 'ready_for_pickup', 'delivered'];
-export const shipmentSchema = new Schema({
+const shipmentSchema = new Schema({
     origin: origin.origin,
     destination: destination.destination,
     driver: {

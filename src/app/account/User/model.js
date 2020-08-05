@@ -28,7 +28,6 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-
   // ---------- this is for reset password---------
   resetPasswordToken: {
     type: String
@@ -36,6 +35,13 @@ const userSchema = new Schema({
   resetPasswordExpirationDate: {
     type: Date
   },
+  referralCode: {
+    type: String,
+    unique: true
+  },
+  referredCount: {
+    type: Number
+  }
 
 
 }, {

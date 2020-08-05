@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 const token = require("../../../utilities/tokenGen")
 const mapper = require("../../../config/googlemaps")
 const paginator = require("express-mongo-paginator")
+const referralCodeGenerator = require('referral-code-generator')
 // const paginator = require("../../../utilities/paginator")
 
 var geocodeParams = {
@@ -22,6 +23,7 @@ exports.createNewUser = async (req, res) => {
             email: req.body.email,
             phone_number: req.body.phone_number,
         });
+        user.referralCode = referralCodeGenerator.custom('lowercase', 3, 6, req.body.name);
         user.password = await user.hashPassword(req.body.password);
         let generatedToken = await token.genToken(req.body.email);
         let addedUser = await user.save()
@@ -130,12 +132,12 @@ exports.logUserIn = async (req, res) => {
             })
         }
         // check validity of user 
-        if (!user.isVerified) {
-            res.status(400).json({
-                type: "Not Verified",
-                msg: "Your Account has not been verified"
-            })
-        }
+        // if (!user.isVerified) {
+        //     res.status(400).json({
+        //         type: "Not Verified",
+        //         msg: "Your Account has not been verified"
+        //     })
+        // }
         let match = await user.compareUserPassword(login.password, user.password);
         if (match) {
             let token = await user.generateJwtToken({
