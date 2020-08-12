@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var cors = require('cors')
+
 const morgan = require('morgan')
 
 
@@ -13,6 +15,7 @@ const app = express();
 const port = process.env.PORT || config.port;
 const ENV = process.env.NODE_ENV || config.env;
 
+app.use(cors())
 app.set("env", ENV);
 app.use(morgan('dev'))
 app.use(bodyParser.json());
