@@ -15,34 +15,14 @@ const adminSchema = new Schema({
     type: String,
     required: true
   },
-  phone_number: {
-    type: String,
-    required: true
-  },
+ 
   email: {
     type: String,
     required: true,
     unique: true
   },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  // ---------- this is for reset password---------
-  resetPasswordToken: {
-    type: String
-  },
-  resetPasswordExpirationDate: {
-    type: Date
-  },
-  // referralCode: {
-  //   type: String,
-  //   unique: true
-  // },
-  // referredCount: {
-  //   type: Number
-  // }
-
+ 
+ 
 
 }, {
   timestamps: true,
@@ -60,7 +40,7 @@ adminSchema.methods.generateJwtToken = async (payload, secret, expires) => {
   return jwt.sign(payload, secret, expires)
 }
 
-module.exports = mongoose.model("User", adminSchema);
+module.exports = mongoose.model("Admin", adminSchema);
 adminSchema.plugin(uniqueValidator, {
   message: '{PATH} Already in use'
 });
