@@ -6,7 +6,7 @@ exports.shipments = async () => {
 };
 
 exports.shipmentsById = async id => {
-    const shipment = await Shipment.findById(id);
+    const shipment = await Shipment.findById(id).populate('user');
     return shipment;
 }
 

@@ -116,37 +116,3 @@ exports.updateShipment = async (req, res) => {
         console.log(err)
     }
 }
-
-
-// exports.assignShipmentToDriver = async(req, res) => {
-//     try {
-//         const { params: {id}, body: {driver_id, status} } = req;
-//         console.log(id);
-//         console.log("driver id", driver_id);
-//         console.log('status is ', status)
-//         const body = {
-//             driver: driver_id,
-//             status
-//         }
-//         console.log(body);
-
-//         const response = await shipmentRepository.modifyShipment(id, body);
-//         // console.log('response data', response);
-//         // let  shipments = []
-//         // shipments.push(response);
-//         // console.log(shipments);
-//         // const driverResponse = await Driver.findOneAndUpdate(driver_id, shipments)
-//         // console.log('driverResponse', driverResponse);
-//         res.status(200).json({
-//             status: "Success",
-//             data: response
-//         });
-
-//     } catch (err) {
-//         res.status(500).json({
-//             status: "Success",
-//             error: err
-//         });
-//         console.log(err)
-//     }
-// }
