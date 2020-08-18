@@ -97,7 +97,10 @@ exports.createShipment = async (req, res) => {
 exports.updateShipment = async (req, res) => {
     try {
         let id = req.params.id
-        let response = await shipmentRepository.updateShipment(id, {
+        if (req.body.driver) {
+            req.body.status = 'asigned'
+        }
+        let response = await shipmentRepository.update(id, {
             $set: req.body //this is capable of assigning of driver, changing of status,canceling of order
         });
         res.status(200).json({
@@ -126,7 +129,7 @@ exports.updateShipment = async (req, res) => {
 //             status
 //         }
 //         console.log(body);
-    
+
 //         const response = await shipmentRepository.modifyShipment(id, body);
 //         // console.log('response data', response);
 //         // let  shipments = []

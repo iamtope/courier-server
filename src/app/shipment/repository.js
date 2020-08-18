@@ -1,7 +1,7 @@
 const Shipment = require("./model");
 
 exports.shipments = async () => {
-    const shipments = await Shipment.find();
+    const shipments = await Shipment.find().populate('driver');
     return shipments;
 };
 
@@ -15,7 +15,7 @@ exports.createShipments = async payload => {
     return newShipment
 }
 
-exports.updateShipment = async (id, body) => {
+exports.update = async (id, body) => {
     const shipment = await Shipment.findByIdAndUpdate(id, body, {
         useFindAndModify: false,
         new: true,
@@ -28,7 +28,7 @@ exports.updateShipment = async (id, body) => {
 
 exports.modifyShipment = async (id, body) => {
     const shipment = await Shipment.findByIdAndUpdate(id, body, {
-        if(err){
+        if (err) {
             throw err
         }
     })
