@@ -1,7 +1,7 @@
 const Shipment = require("./model");
 
 exports.shipments = async () => {
-    const shipments = await Shipment.find({});
+    const shipments = await Shipment.find();
     return shipments;
 };
 

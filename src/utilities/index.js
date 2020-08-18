@@ -6,5 +6,6 @@ exports.extractObject = (obj, keys) => {
 }
 
 exports.calculatePercentage = (amount, percentage) => {
+    if (!percentage) return amount
     return ((percentage / 100) * amount).toFixed(2)
 }
